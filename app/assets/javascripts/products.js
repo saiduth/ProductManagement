@@ -4,7 +4,7 @@ var page_number=2;
 function paginate_store_items(p_no)
 {
     var auth_token = $('meta[name="csrf-token"]').attr('content')
-    if (p_no==0 && page_number>2)
+    if (p_no==0 && page_number>=2)
     {
 
       page_number=page_number-1;
