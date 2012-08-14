@@ -1,5 +1,7 @@
 ProductManagement
 =================
+To download the source code click on zip
+
 
 Products listing and editing
 
@@ -10,3 +12,5 @@ Products listing and editing
 5. Create camera,songs,books by logging into admin panel
 6. username=admin@example.com  
 7. password =password
+8. To view the products list ex: http://localhost:3000/
+9. For admin login ex: http://localhost:3000/admin
