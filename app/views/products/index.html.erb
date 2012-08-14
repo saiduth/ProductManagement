@@ -9,6 +9,8 @@
     </tr>
     <% if @products.count>Rails.application.config.per_page_list %>
      <%- storeitems=@products[0,Rails.application.config.per_page_list] %>
+        <%else%>
+      <%- storeitems=@products%>
      <%end%>
     <% storeitems.each do |q| %>
         <% if q.class.to_s=="Book" %>
