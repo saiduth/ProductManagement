@@ -1,0 +1,67 @@
+ <html>
+<body>
+<div class="container">
+    <h2>Listing all store items</h2>
+
+  <table class="table table-bordered table-condensed table-striped" id="store-list">
+    <tr>
+      <th><span class="label label-inverse">Product Type</span></th>
+    </tr>
+    <% if @products.count>Rails.application.config.per_page_list %>
+     <%- storeitems=@products[0,Rails.application.config.per_page_list] %>
+     <%end%>
+    <% storeitems.each do |q| %>
+        <% if q.class.to_s=="Book" %>
+            <tr>
+              <td> 	<span class="label label-success"><%= q.class  %></span></td>
+              <td><span class="label label-info"><%= q.title  %></span></td>
+              <td><span class="label label-info"><%= q.author  %></span></td>
+              <td><span class="label label-info"><%= q.description  %></span></td>
+              <td><span class="label label-info"><%= q.price  %></span></td>
+            </tr>
+        <% elsif q.class.to_s=="Camera" %>
+            <tr>
+              <td><span class="label label-success"><%= q.class  %></span></td>
+              <td><span class="label label-info"><%= q.model  %></span></td>
+              <td><span class="label label-info"><%= q.make  %></span></td>
+              <td><span class="label label-info"><%= q.price  %></span></td>
+              <td></td>
+            </tr>
+        <% elsif q.class.to_s=="Song" %>
+            <tr>
+              <td><span class="label label-success"><%= q.class  %></span></td>
+              <td><span class="label label-info"><%= q.name  %></span></td>
+              <td><span class="label label-info"><%= q.album  %></span></td>
+              <td><span class="label label-info"><%= q.artist  %></span></td>
+              <td></td>
+            </tr>
+        <% end %>
+    <% end %>
+  </table>
+  <div id="wait" style="display:none;position:absolute;top:52%;left:45%;">
+     <%=image_tag("/images/loading.png",:width => "32",:height=>"32") %>
+  </div>
+    <%- per_page=Rails.application.config.per_page_list %>
+    <% if @products.count>per_page %>
+    <div class="pagination" style="position:absolute;top:450px;">
+    <ul>
+    <li><a href="#"  class="disabled"  onclick="paginate_store_items(0)"><<</a></li>
+      <li class="disabled" id="page1">
+    <a href="#" onclick="paginate_store_items(1)" >1</a>
+    </li>
+    <li id="page2"><a href="#"  onclick="paginate_store_items(2)">2</a></li>
+      <% if @products.count>2*per_page %>
+        <li id="page3"><a href="#"  onclick="paginate_store_items(3)">3</a></li>
+      <%end%>
+     <% if @products.count>3*per_page %>
+    <li id="page4"><a href="#"  onclick="paginate_store_items(4)" >4</a></li>
+          <%end%>
+      <% if @products.count>4*per_page %>
+    <li><a href="#" onclick="paginate_store_items(5)">>></a></li>
+           <%end%>
+    </ul>
+    </div>
+    <%end%>
+</div>
+</body>
+ </html>
